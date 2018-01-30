@@ -23,30 +23,26 @@
               {{input name="title" value=model.record.title class="form-control"}}
               <p class="help-block">Título que aparece para o usuário acima do formulário.</p>
             </div>
-            <div class="form-group">
-              <label>Seu nome ou empresa*:</label>
-              {{input name="formName" value=model.record.formName class="form-control" required="required"}}
-              <p class="help-block">Esse nome é usado como nome de exibição no "from" ou "replyTo" do e-mail.</p>
-            </div>
-            <div class="form-group">
+{{!--             <div class="form-group">
               <label>E-mail de resposta (replyTo)*:</label>
               {{input type="email" name="replyTo" value=model.record.replyTo class="form-control" required="required"}}
               <p class="help-block">E-mail de resposta.
-                <br>Para garantir o envio: use um e-mail com o mesmo domínio do site.</p>
+                <br>Para garantir o envio: use um e-mail com o mesmo domínio do site.
+                <br>Exemplo: Linky Systems &lt;contato@linkysystems.com&gt; </p>
             </div>
-
+ --}}
             <div class="form-group">
               <label>Assunto (subject):</label>
               {{input name="subject" value=model.record.subject class="form-control"}}
               <p class="help-block">Assunto do email.<br>Deixe o campo vazio para usar o assunto padrão definido nos templates de email.</p>
             </div>
-
             <div class="form-group">
               <label>E-mail de envio (to):</label>
               {{input type="email" name="to" value=model.record.to class="form-control"}}
-              <p class="help-block">E-mails separados por vírgula para onde os dados serão enviados.</p>
+              <p class="help-block">E-mails separados por vírgula para onde os dados serão enviados.
+                <br>Exemplo: Linky Systems &lt;contato@linkysystems.com&gt;
+              </p>
             </div>
-
             <div class="form-group">
               <label>URL de sucesso:</label>
               {{input type="text" name="redirectToOnSuccess" value=model.record.redirectToOnSuccess class="form-control"}}
