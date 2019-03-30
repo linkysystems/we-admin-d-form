@@ -1,13 +1,14 @@
-import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import Route from '@ember/routing/route';
+import { get, set } from '@ember/object';
+import { getOwner } from '@ember/application';
+import { hash } from 'rsvp';
 
-const get = Ember.get;
-
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend(AuthenticatedRouteMixin, {
   model(params) {
-    const ENV = Ember.getOwner(this).resolveRegistration('config:environment');
+    const ENV = getOwner(this).resolveRegistration('config:environment');
 
-    return Ember.RSVP.hash({
+    return hash({
       ENV: ENV,
       record: this.get('store').findRecord('d-form', params.id),
       alias: this.get('store').query('url-alia', {
@@ -31,7 +32,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     if (
       model.alias && model.alias.alias && model.record && model.record.id
     ) {
-      Ember.set(model.record, 'setAlias', Ember.get(model.alias,'alias'));
+      set(model.record, 'setAlias', get(model.alias,'alias'));
     } else {
       model.alias = this.get('store').createRecord('url-alia', {
         target: '/d-form/'+id,
@@ -147,7 +148,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         }
       }
 
-      Ember.set(this, 'currentModel.record.updated', true);
+      set(this, 'currentModel.record.updated', true);
     }
   },
 

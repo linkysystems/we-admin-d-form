@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { observer } from '@ember/object';
+import { copy } from '@ember/object/internals';
+import { get } from '@ember/object';
 
-const get = Ember.get;
-
-export default Ember.Component.extend({
+export default Component.extend({
   field: null,
 
   deleteItem: 'deleteItem',
@@ -10,7 +11,7 @@ export default Ember.Component.extend({
   minValue: null,
   maxValue: null,
 
-  minValueChanged: Ember.observer('minValue', function() {
+  minValueChanged: observer('minValue', function() {
     const field = this.get('field');
     let formFieldAttributes = get(this, 'field.formFieldAttributes') || {};
 
@@ -20,9 +21,9 @@ export default Ember.Component.extend({
     } else {
       delete formFieldAttributes.min;
     }
-    field.set('formFieldAttributes', Ember.copy(formFieldAttributes));
+    field.set('formFieldAttributes', copy(formFieldAttributes));
   }),
-  maxValueChanged: Ember.observer('maxValue', function() {
+  maxValueChanged: observer('maxValue', function() {
     const field = this.get('field');
     let formFieldAttributes = get(this, 'field.formFieldAttributes') || {};
 
@@ -32,7 +33,7 @@ export default Ember.Component.extend({
     } else {
       delete formFieldAttributes.max;
     }
-    field.set('formFieldAttributes', Ember.copy(formFieldAttributes));
+    field.set('formFieldAttributes', copy(formFieldAttributes));
   }),
 
   didReceiveAttrs() {

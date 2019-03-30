@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
-export default Ember.Component.extend({
+export default Component.extend({
   onSortEnd: 'onSortEnd',
   deleteItem: 'deleteItem',
 
@@ -9,7 +10,7 @@ export default Ember.Component.extend({
   group: null,
   parentDepth: 0,
   classNames: ['d-f-list-group-item'],
-  formComponentName: Ember.computed('field.type', function() {
+  formComponentName: computed('field.type', function() {
     const type = this.get('field.type');
     if (!type) {
       return null;

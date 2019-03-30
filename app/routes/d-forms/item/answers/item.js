@@ -1,13 +1,14 @@
-import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-const get = Ember.get;
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
+import { hash } from 'rsvp';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend(AuthenticatedRouteMixin, {
   model(params) {
     const parentModel = this.modelFor('d-forms.item');
     const form = get(parentModel, 'record');
 
-    return Ember.RSVP.hash({
+    return hash({
       form: form,
       fields: this.get('store').query('d-form-field', {
         formId: form.id,

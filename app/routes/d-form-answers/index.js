@@ -1,12 +1,14 @@
-import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-import ENV from "../../config/environment";
+import Route from '@ember/routing/route';
+import { inject } from '@ember/service';
+import { getOwner } from '@ember/application';
+import { hash } from 'rsvp';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  i18n: Ember.inject.service(),
+export default Route.extend(AuthenticatedRouteMixin, {
+  i18n: inject(),
   model() {
-    return  Ember.RSVP.hash({
-      ENV: ENV,
+    return  hash({
+      ENV: getOwner(this).resolveRegistration('config:environment'),
       records: this.get('store').query('d-form-answer', {}),
       columns: [
         {

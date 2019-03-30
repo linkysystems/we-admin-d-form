@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { sort } from '@ember/object/computed';
+import { getOwner } from '@ember/application';
 
 const Sortable = window.Sortable;
 
-export default Ember.Component.extend({
+export default Component.extend({
   fields: [],
   sortedFieldsDesc: ['weight:asc'],
-  sortedFields: Ember.computed.sort('fields', 'sortedFieldsDesc'),
+  sortedFields: sort('fields', 'sortedFieldsDesc'),
 
   group: 'dFormField',
 
@@ -32,7 +34,7 @@ export default Ember.Component.extend({
         // evt.oldIndex;  // element's old index within old parent
         // evt.newIndex;  // element's new index within new parent
 
-        const viewRegistry = Ember.getOwner(this).lookup('-view-registry:main');
+        const viewRegistry = getOwner(this).lookup('-view-registry:main');
 
         const toComponent = viewRegistry[evt.to.id];
         const fromComponent = viewRegistry[evt.from.id];

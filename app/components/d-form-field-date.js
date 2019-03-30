@@ -1,15 +1,16 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { observer } from '@ember/object';
+import { copy } from '@ember/object/internals';
+import { get } from '@ember/object';
 
-const get = Ember.get;
-
-export default Ember.Component.extend({
+export default Component.extend({
   field: null,
 
   deleteItem: 'deleteItem',
 
   'data-viewformat': null,
 
-  viewFormatChanged: Ember.observer('data-viewformat', function() {
+  viewFormatChanged: observer('data-viewformat', function() {
     const field = this.get('field');
     let formFieldAttributes = get(this, 'field.formFieldAttributes') || {};
 
@@ -19,7 +20,7 @@ export default Ember.Component.extend({
     } else {
       delete formFieldAttributes['data-viewformat'];
     }
-    field.set('formFieldAttributes', Ember.copy(formFieldAttributes));
+    field.set('formFieldAttributes', copy(formFieldAttributes));
   }),
 
   didReceiveAttrs() {

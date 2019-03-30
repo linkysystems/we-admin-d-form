@@ -48,6 +48,9 @@
         <div class="col-md-6">
           <button class="btn btn-default btn-block" {{action 'addItem' 'select'}}>Opções / seleção</button>
         </div>
+        <div class="col-md-6">
+          <button class="btn btn-default btn-block" {{action 'addItem' 'radio'}}>Opções / marcação</button>
+        </div>
       </div>
     </div>
     <div class="col-md-8 d-form-builder-fields">
@@ -55,7 +58,7 @@
     </div>
 
     <div class="col-md-12">
-      <div class="d-f-actions">
+      <div class="d-f-actions footer-actions">
         <button type="button" class="btn btn-primary" {{action "saveForm" model.record}}>Salvar formulário</button>
       </div>
     </div>

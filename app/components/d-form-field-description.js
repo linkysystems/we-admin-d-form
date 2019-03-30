@@ -1,18 +1,22 @@
-import Ember from 'ember';
-
-let ENV;
 let editorLocaleCache, editorLocaleUrlCache;
 
-export default Ember.Component.extend({
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { inject } from '@ember/service';
+import { getOwner } from '@ember/application';
+
+let ENV;
+
+export default Component.extend({
   field: null,
   deleteItem: 'deleteItem',
 
-  ajax: Ember.inject.service(),
-  session: Ember.inject.service('session'),
-  settings: Ember.inject.service('settings'),
-  upload: Ember.inject.service('upload'),
+  ajax: inject(),
+  session: inject('session'),
+  settings: inject('settings'),
+  upload: inject('upload'),
 
-  editorOptions: Ember.computed('settings.data', {
+  editorOptions: computed('settings.data', {
     get() {
       const opts = {
         min_height: 200,
@@ -39,7 +43,7 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    ENV = Ember.getOwner(this).resolveRegistration('config:environment');
+    ENV = getOwner(this).resolveRegistration('config:environment');
   },
 
   getEditorLocale() {
