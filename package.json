@@ -1,6 +1,6 @@
 {
   "name": "we-admin-d-form",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "description": "We.js admin news session to manage resources from we-plugin-d-form",
   "keywords": [
