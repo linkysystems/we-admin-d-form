@@ -14,7 +14,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
         formId: form.id,
         order: 'weight ASC'
       }),
-      record: this.get('store').findRecord('d-form-answer', params.answerId)
+      record: this.get('store').findRecord('d-form-answer', params.answer_id)
     });
   }
 });
