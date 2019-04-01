@@ -38,8 +38,8 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    const ffa = this.get('field.formFieldAttributes');
-    if (!ffa.rows) {
+    const ffa = this.get('field.formFieldAttributes') || {};
+    if (!ffa || !ffa.rows) {
       ffa.rows = 5; // set the default value
     }
 
